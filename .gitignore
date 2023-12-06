@@ -1,2 +1,3 @@
-doc/*.pdf
-doc/*.txt
+*.pdf
+Texte.txt
+Build/

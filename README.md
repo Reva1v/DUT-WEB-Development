@@ -1,2 +1,2 @@
-# LR-4
+# GitHowTo
 Universyty

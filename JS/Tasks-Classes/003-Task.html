@@ -1,0 +1,56 @@
+﻿<!--
+
+    Implement Calculator ctor, that creates extendable calc objects.
+    By default Calculator supports "+" and "-" (line 24 and 25)
+
+    Extend functionality with addOperation operation to add new functions (line 27 and 28).
+
+-->
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+
+    // Constructor of Calculator type
+    function Calculator() {
+        this.operations = {
+            "+": function (a, b) { return a + b; },
+            "-": function (a, b) { return a - b; }
+        };
+    }
+    Calculator.prototype.calculate = function (str) {
+        let parts = str.split(" ");
+        let a = Number(parts[0]);
+        let op = parts[1];
+        let b = Number(parts[2]);
+
+        if (!this.operations[op]) {
+            return undefined;
+        }
+        if (isNaN(a) || isNaN(b)) {
+            return NaN;
+        }
+
+        return this.operations[op](a, b);
+    };
+
+    Calculator.prototype.addOperation = function (op, func) {
+        this.operations[op] = func;
+    };
+
+    let calc = new Calculator();
+
+    alert(calc.calculate("3 + 7")); // output 10
+    alert(calc.calculate("7 - 3")); // output 4
+
+    calc.addOperation("*", function (a, b) { return a * b; });
+    calc.addOperation("/", function (a, b) { return a / b; });
+
+    alert(calc.calculate("3 * 7")); // output 21
+    alert(calc.calculate("8 / 4")); // output 2
+</script>
+</body>
+</html>
